@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frucht Klassifikator</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        #result, #error { margin-top: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; }
+        #error { border-color: #dc3545; color: #dc3545; background-color: #f8d7da; }
+        #spinner { display: none; margin: 20px 0; text-align: center; }
+        #preview { max-width: 100%; height: auto; max-height: 300px; margin-top: 10px; display: block; margin-left: auto; margin-right: auto; border-radius: 5px;}
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9em; overflow-x: auto;}
+        .prediction-summary { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; padding: 10px; background-color: #e9ecef; border-radius: 5px; text-align: center;}
+        .details-toggle { margin-top: 10px; cursor: pointer; color: blue; text-decoration: underline; }
+        .details-section { margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;}
+        button { padding: 8px 15px; cursor: pointer;}
+        input[type="file"] { margin-right: 10px;}
+    </style>
+</head>
+<body>
+    <h1>Frucht Klassifikator</h1>
+    <p>Lade ein Bild einer Frucht hoch (Apfel, Banane, Kiwi, Zitrone, Orange).</p>
+
+    <form id="upload-form">
+        <input type="file" id="imageFile" name="image" accept="image/png, image/jpeg" required>
+        <button type="submit">Klassifizieren</button>
+    </form>
+
+    <div id="spinner">Lade...</div>
+
+    <div id="result" style="display: none;">
+        <h2>Ergebnis:</h2>
+        <div id="prediction-summary" class="prediction-summary"></div>
+        <img id="preview" src="#" alt="Vorschau Bild"/>
+        <div class="details-toggle" onclick="toggleDetails()">Details anzeigen/verbergen</div>
+        <div id="details-section" class="details-section" style="display: none;">
+             <h4>Alle Wahrscheinlichkeiten:</h4>
+             <pre><code id="prediction-details"></code></pre>
+        </div>
+    </div>
+
+    <div id="error" style="display: none;"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
